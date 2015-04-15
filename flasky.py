@@ -7,7 +7,7 @@ from flask.ext.moment import Moment
 from flask.ext.wtf import Form
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.migrate import Migrate, MigrateCommand
-from flask.ext.mail import Mail
+from flask.ext.mail import Mail, Message
 
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
@@ -24,14 +24,17 @@ app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
 app.config['MAIL_SERVER'] = 'smtp.163.com'
 app.config['MAIL_PORT'] = 25
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
-app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+app.config['MAIL_USE_TLS'] = False
+# app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+# app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
+app.config['MAIL_USERNAME'] = "***@163.com"
+app.config['MAIL_PASSWORD'] = "******"
 
 app.config['FLASKY_MAIL_SUBJECT_PREFIX'] = '[Flasky]'
 app.config['FLASKY_MAIL_SENDER'] = 'Flasky Admin <kba977@163.com>'
 
-app.config['FLASKY_ADMIN'] = os.environ.get('FLASKY_ADMIN')
+# app.config['FLASKY_ADMIN'] = os.environ.get('FLASKY_ADMIN')
+app.config['FLASKY_ADMIN'] = "***@163.com"
 
 manage = Manager(app)
 bootstrap = Bootstrap(app)
@@ -101,9 +104,9 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 
-@app.errorhandler(500)
-def internal_server_error(e):
-    return render_template('500.html'), 500
+# @app.errorhandler(500)
+# def internal_server_error(e):
+#     return render_template('500.html'), 500
 
 
 def make_shell_context():
