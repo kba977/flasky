@@ -6,6 +6,7 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.moment import Moment
 from flask.ext.wtf import Form
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.migrate import Migrate, MigrateCommand
 
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
@@ -20,10 +21,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = \
     'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
+
 manage = Manager(app)
 bootstrap = Bootstrap(app)
 moment = Moment(app)
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
 
 
 class NameForm(Form):
@@ -92,8 +96,10 @@ def internal_server_error(e):
 
 def make_shell_context():
     return dict(app=app, db=db, User=User, Role=Role)
-manage.add_command("shell", Shell(make_context=make_shell_context))
+
 
 
 if __name__ == '__main__':
+    manage.add_command("shell", Shell(make_context=make_shell_context))
+    manage.add_command('db', MigrateCommand)
     manage.run()
