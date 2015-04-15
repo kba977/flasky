@@ -29,7 +29,7 @@ app.config['MAIL_USE_TLS'] = False
 # app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
 # app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 app.config['MAIL_USERNAME'] = "kba977@163.com"
-app.config['MAIL_PASSWORD'] = "ca4sk764kochiya"
+app.config['MAIL_PASSWORD'] = "******"
 
 app.config['FLASKY_MAIL_SUBJECT_PREFIX'] = '[Flasky]'
 app.config['FLASKY_MAIL_SENDER'] = 'Flasky Admin <kba977@163.com>'
