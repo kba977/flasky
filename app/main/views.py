@@ -28,3 +28,6 @@ def index():
                            known=session.get('known', False),
                            current_time=datetime.utcnow())
 
+@main.route('/love')
+def love():
+    return render_template('love.html')
