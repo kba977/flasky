@@ -11,11 +11,11 @@ class Config:
     MAIL_USE_TLS = False
     # MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     # MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    MAIL_USERNAME = "kba977@163.com"
-    MAIL_PASSWORD = "ca4sk764kochiya"
+    MAIL_USERNAME = "dczhijun03"
+    MAIL_PASSWORD = "ca4sk764"
 
     FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
-    FLASKY_MAIL_SENDER = 'Flasky Admin <kba977@163.com>'
+    FLASKY_MAIL_SENDER = 'Flasky Admin <dczhijun03@163.com>'
     # FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
     FLASKY_ADMIN = "kba977@163.com"
 
