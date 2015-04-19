@@ -2,7 +2,6 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% import "_macros.html" as macros %}
 
-
 {% block title %}Flasky{% endblock %}
 
 {% block page_content %}
@@ -24,8 +23,14 @@
 </div>
 
 {% include '_posts.html' %}
+{% if pagination %}
 <div class="pagination">
     {{ macros.pagination_widget(pagination, '.index') }}
 </div>
+{% endif %}
+{% endblock %}
 
+{% block scripts %}
+{{ super() }}
+{{ pagedown.include_pagedown() }}
 {% endblock %}
