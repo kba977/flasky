@@ -138,6 +138,9 @@ def unfollow(username):
     if not current_user.is_following(user):
         flash('You are not following %s anymore.' % username)
         return redirect(url_for('.user', username=username))
+    current_user.unfollow(user)
+    flash('You are not following %s anymore.' % username)
+    return redirect(url_for('.user', username=username))
 
 
 @main.route('/followers/<username>')
