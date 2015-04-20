@@ -22,10 +22,10 @@ class Role(db.Model):
     def insert_roles():
         roles = {
             'User': (Permission.FOLLOW |
-                     Permission.COMMIT |
+                     Permission.COMMENT |
                      Permission.WRITE_ARTICLES, True),
             'Moderator': (Permission.FOLLOW |
-                          Permission.COMMIT |
+                          Permission.COMMENT |
                           Permission.WRITE_ARTICLES |
                           Permission.MODERATE_COMMENTS, False),
             'Administator': (0xff, False)
@@ -44,13 +44,14 @@ class Role(db.Model):
 
 
 class Post(db.Model):
-    __tablename = 'posts'
+    __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.Text)
     body_html = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
+
 
 
     @staticmethod
@@ -304,7 +305,7 @@ login_manager.anonymous_user = AnonymousUser
 
 class Permission:
     FOLLOW = 0x01
-    COMMIT = 0x02
+    COMMENT = 0x02
     WRITE_ARTICLES = 0x04
     MODERATE_COMMENTS = 0x08
     ADMINISTER = 0x80
